@@ -30,5 +30,19 @@
     },
     "clangd.arguments": [
         "--header-insertion=never"
-    ]
+    ],
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.defaultProfile.windows": "QMK_MSYS",
+    "terminal.integrated.profiles.windows": {
+        "QMK_MSYS": {
+            "path": "C:/Program Files/QMK MSYS/usr/bin/bash.exe",
+            "env": {
+                "MSYSTEM": "MINGW64",
+                "CHERE_INVOKING": "1"
+            },
+            "args": [
+                "--login"
+            ]
+        }
+    }
 }
