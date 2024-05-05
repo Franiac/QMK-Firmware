@@ -1,16 +1,12 @@
-# Build Options
-#   change yes to no to disable
-#
 BOOTMAGIC_ENABLE = yes      # Enable Bootmagic Lite
-MOUSEKEY_ENABLE = yes       # Mouse keys
-EXTRAKEY_ENABLE = yes       # Audio control and System control
-CONSOLE_ENABLE = no         # Console for debug
-COMMAND_ENABLE = no         # Commands for debug and configuration
-NKRO_ENABLE = yes           # Enable N-Key Rollover
+SPLIT_KEYBOARD   = yes      # Enable Split Keyboard
+NKRO_ENABLE      = yes      # Enable N-Key Rollover
+RGBLIGHT_ENABLE  = yes      # Enable keyboard RGB underglow
+MOUSEKEY_ENABLE  = no       # Mouse keys
+EXTRAKEY_ENABLE  = no       # Audio control and System control
+CONSOLE_ENABLE   = no       # Console for debug
+COMMAND_ENABLE   = no       # Commands for debug and configuration
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
-RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
-AUDIO_ENABLE = no           # Audio output
-ENCODER_ENABLE = yes
-OLED_ENABLE = yes
-
-SPLIT_KEYBOARD = yes
+AUDIO_ENABLE     = no       # Audio output
+ENCODER_ENABLE   = no       # Enable Rotary Encoders
+OLED_ENABLE      = no       # Enable OLED Displays
