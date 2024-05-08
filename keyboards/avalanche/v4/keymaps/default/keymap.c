@@ -8,10 +8,10 @@
 #endif
 
 enum custom_keycodes {
-    AE = 0x6660,
-    OE = 0x6661,
-    UE = 0x6662,
-    SZ = 0x6663
+    AE = SAFE_RANGE,
+    OE,
+    UE,
+    SZ
 };
 
 enum layer {
