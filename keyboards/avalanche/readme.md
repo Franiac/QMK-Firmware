@@ -1,27 +1,37 @@
 # Avalanche
 
-![Avalanche v3.0](https://github.com/vlkv/avalanche/blob/master/images/avalanche_v3-0.jpg)
+## Enable Debug Mode
 
-An open source ergonomic split keyboard with removable keys to support 40% and 60% configurations.
+Modify `rules.mk`:
 
-* Keyboard Maintainer: [Vitaly Volkov](https://github.com/vlkv)
-* Hardware Supported: Avalanche PCB v1, v2, v3, Pro Micro 5V/16MHz and compatible.
-* Hardware Availability: [Avalanche](https://github.com/vlkv/avalanche).
+```C
+CONSOLE_ENABLE = yes
+```
 
-Make example for this keyboard (after setting up your build environment):
+Use `keyboard_post_init_user` in `keymap.c`:
 
-    make avalanche/v1:default  # for v1 PCBs
-    make avalanche/v2:default  # for v2 PCBs
-    make avalanche/v3:default  # for v3 PCBs
+```C
+void keyboard_post_init_user(void) {
+#ifdef CONSOLE_ENABLE
+    debug_enable=true;
+#endif
+}
+```
 
-Flashing example for this keyboard:
+## Log Key Info
 
-    make avalanche/v1:default:flash  # for v1 PCBs
-    make avalanche/v2:default:flash  # for v2 PCBs
-    make avalanche/v3:default:flash  # for v3 PCBs
+Include `print.h` in `keymap.c`:
 
-See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
+```C
+#ifdef CONSOLE_ENABLE
+#include "print.h"
+#endif
+```
 
-## Bootloader
+Print key info:
 
-Briefly press the button along the inner edge of the PCB next to the microcontroller.
+```C
+#ifdef CONSOLE_ENABLE
+    uprintf("KC: 0x%04X, MOD: 0x%04X, COL: %2u, ROW: %2u, PRESSED: %u, TIME: %5u, INT: %u, COUNT: %u\n", keycode, get_mods() & MOD_MASK_SHIFT, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+#endif
+```

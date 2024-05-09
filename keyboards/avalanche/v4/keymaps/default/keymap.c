@@ -3,10 +3,6 @@
 
 #include QMK_KEYBOARD_H
 
-#ifdef CONSOLE_ENABLE
-#include "print.h"
-#endif
-
 enum custom_keycodes {
     AE = SAFE_RANGE,
     OE,
@@ -51,54 +47,65 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-void keyboard_post_init_user(void) {
-#ifdef CONSOLE_ENABLE
-    debug_enable=true;
-#endif
-}
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-
-#ifdef CONSOLE_ENABLE
-    uprintf("KC: 0x%04X, MOD: 0x%04X, COL: %2u, ROW: %2u, PRESSED: %u, TIME: %5u, INT: %u, COUNT: %u\n", keycode, get_mods() & MOD_MASK_SHIFT, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
-#endif
+    uint8_t mods = get_mods();
+    uint8_t shift = mods & MOD_MASK_SHIFT;
 
     switch (keycode) {
         case AE:
+            clear_mods();
+
             if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    SEND_STRING("Ä");
+                if (shift) {
+                    SEND_STRING(SS_RALT(SS_TAP(X_P0)SS_TAP(X_P1)SS_TAP(X_P9)SS_TAP(X_P6)));
                 }
                 else {
-                    SEND_STRING("ä");
+                    SEND_STRING(SS_RALT(SS_TAP(X_P0)SS_TAP(X_P2)SS_TAP(X_P2)SS_TAP(X_P8)));
                 }
             }
+
+            set_mods(mods);
             break;
         case OE:
+            clear_mods();
+
             if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    SEND_STRING("Ö");
+                if (shift) {
+                    SEND_STRING(SS_RALT(SS_TAP(X_P0)SS_TAP(X_P2)SS_TAP(X_P1)SS_TAP(X_P4)));
                 }
                 else {
-                    SEND_STRING("ö");
+                    SEND_STRING(SS_RALT(SS_TAP(X_P0)SS_TAP(X_P2)SS_TAP(X_P4)SS_TAP(X_P6)));
                 }
             }
+
+            set_mods(mods);
             break;
         case UE:
+            clear_mods();
+
             if (record->event.pressed) {
-                if (get_mods() & MOD_MASK_SHIFT) {
-                    SEND_STRING("Ü");
+                if (shift) {
+                    SEND_STRING(SS_RALT(SS_TAP(X_P0)SS_TAP(X_P2)SS_TAP(X_P2)SS_TAP(X_P0)));
                 }
                 else {
-                    SEND_STRING("ü");
+                    SEND_STRING(SS_RALT(SS_TAP(X_P0)SS_TAP(X_P2)SS_TAP(X_P5)SS_TAP(X_P2)));
                 }
             }
+
+            set_mods(mods);
             break;
         case SZ:
+            clear_mods();
+
             if (record->event.pressed) {
-                SEND_STRING("ß");
+                SEND_STRING(SS_DOWN(X_RALT)SS_TAP(X_P0)SS_TAP(X_P2)SS_TAP(X_P2)SS_TAP(X_P3)SS_UP(X_RALT));
             }
+
+            set_mods(mods);
             break;
     }
+
     return true;
 }
