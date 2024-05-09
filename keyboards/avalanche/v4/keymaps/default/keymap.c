@@ -1,6 +1,3 @@
-// qmk compile -kb avalanche/v4 -km default
-// qmk flash -kb avalanche/v4 -km default
-
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
@@ -20,8 +17,8 @@ enum layer {
 #define M2 MO(LAYER_2)
 #define L1 LALT_T(KC_ESC)
 #define L2 LSFT_T(KC_SPC)
-#define R1 RSFT_T(KC_ENT)
-#define R2 RALT_T(KC_BSPC)
+#define R1 RALT_T(KC_ENT)
+#define R2 RSFT_T(KC_BSPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_0] = LAYOUT(
@@ -46,8 +43,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
     )
 };
-
-
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     uint8_t mods = get_mods();
