@@ -41,11 +41,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    uint8_t mods = get_mods();
-    uint8_t shift = mods & MOD_MASK_SHIFT;
-
     switch (keycode) {
         case AE:
+            uint8_t mods = get_mods();
+            uint8_t shift = mods & MOD_MASK_SHIFT;
+
             clear_mods();
 
             if (record->event.pressed) {
@@ -60,6 +60,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             set_mods(mods);
             break;
         case OE:
+            uint8_t mods = get_mods();
+            uint8_t shift = mods & MOD_MASK_SHIFT;
+
             clear_mods();
 
             if (record->event.pressed) {
@@ -74,6 +77,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             set_mods(mods);
             break;
         case UE:
+            uint8_t mods = get_mods();
+            uint8_t shift = mods & MOD_MASK_SHIFT;
+
             clear_mods();
 
             if (record->event.pressed) {
@@ -88,6 +94,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             set_mods(mods);
             break;
         case SZ:
+            uint8_t mods = get_mods();
+
             clear_mods();
 
             if (record->event.pressed) {
