@@ -1,5 +1,25 @@
 # Avalanche
 
+## Compile
+
+```PS
+qmk compile -kb avalanche/v4 -km default
+```
+
+## Flash
+
+### For DFU Bootloader
+
+```PS
+qmk flash -kb avalanche/v4 -km default -bl dfu-split-[left|right]
+```
+
+### For Caterina Bootloader
+
+```PS
+qmk flash -kb avalanche/v4 -km default -bl avrdude-split-[left|right]
+```
+
 ## Enable Debug Mode
 
 Modify `rules.mk`:
